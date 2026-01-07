@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <title>Korobko | Geomatics Services — Montreal • Cornwall • Ottawa</title>
+  <meta name="description" content="Oleg Korobko - Professional geomatics specialist with high-precision equipment. Topographic surveys, construction layout, utility data collection, and GIS mapping serving Montreal, Cornwall, and Ottawa." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Korobko | Professional Geomatics Specialist" />
+  <meta property="og:description" content="Oleg Korobko - Professional geomatics specialist. High-precision topographic surveys, construction layout, utility data collection, GIS mapping. Montreal • Cornwall • Ottawa." />
+  <meta property="og:type" content="website" />
+
+  <!-- Simple, fast styling (no external libs) -->
+  <style>
+    :root{
+      --bg:#0f0c0a;
+      --card:#17110d;
+      --text:#f3eee9;
+      --muted:#c9bfb6;
+      --line:#2a1d16;
+
+      /* Autumn palette */
+      --accent:#e07a1f;  /* pumpkin */
+      --accent2:#d1495b; /* warm red */
+      --accent3:#f2cc8f; /* sand */
+      --good:#79c99e;
+
+      --shadow: 0 12px 28px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(1000px 500px at 20% -10%, rgba(224,122,31,.25), transparent 55%),
+        radial-gradient(900px 500px at 110% 10%, rgba(209,73,91,.18), transparent 55%),
+        radial-gradient(800px 600px at 30% 120%, rgba(242,204,143,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:100%; max-width:var(--max); margin:0 auto; padding:0 18px; }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(15,12,10,.65);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; letter-spacing:.3px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      object-fit: cover;
+    }
+    .brand small{ display:block; font-weight:500; color:var(--muted); letter-spacing:0; }
+    nav{
+      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(224,122,31,.95), rgba(209,73,91,.85));
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.primary:hover{ background: linear-gradient(135deg, rgba(224,122,31,1), rgba(209,73,91,.95)); }
+    .tag{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Hero */
+    .hero{ padding:44px 0 18px; }
+    .hero-grid{
+      display:grid; gap:18px;
+      grid-template-columns: 1fr;
+      align-items:stretch;
+    }
+    .card{
+      background: rgba(23,17,13,.78);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{ padding:26px; }
+    h1{
+      margin:8px 0 8px;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height:1.12;
+      letter-spacing:.2px;
+    }
+    .lead{ margin:10px 0 18px; color:var(--muted); font-size: 16px; max-width: 62ch; }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    .bullets{
+      margin:18px 0 0; padding:0; list-style:none;
+      display:grid; gap:10px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+    .bullets li{
+      display:flex; gap:10px; align-items:flex-start;
+      color:var(--muted);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--good);
+      margin-top:6px;
+      box-shadow: 0 0 0 4px rgba(121,201,158,.12);
+      flex:0 0 auto;
+    }
+
+    .hero-side{ padding:22px; display:flex; flex-direction:column; gap:12px; }
+    .mini{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+    .mini h3{ margin:0 0 6px; font-size:14px; color:var(--muted); font-weight:650; letter-spacing:.4px; text-transform:uppercase; }
+    .mini p{ margin:0; font-size:14px; color:var(--text); }
+    .mini p span{ color:var(--muted); }
+
+    /* Sections */
+    section{ padding:26px 0; }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+      margin:0 0 14px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width: 70ch;
+    }
+
+    .grid-3{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+    .grid-2{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .service{ padding:18px; }
+    .service h3{ margin:0 0 8px; font-size:16px; }
+    .service ul{
+      margin:10px 0 0; padding-left:18px;
+      color:var(--muted);
+    }
+    .service li{ margin:6px 0; }
+
+    .split{ padding:18px; }
+    .split h3{ margin:0 0 8px; font-size:16px; }
+    .split p{ margin:0; color:var(--muted); }
+
+    .cta{
+      padding:22px;
+      background: linear-gradient(135deg, rgba(224,122,31,.25), rgba(209,73,91,.22));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .cta strong{ font-size:16px; }
+    .cta span{ color:var(--muted); }
+
+    /* Footer */
+    footer{
+      padding:26px 0 34px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+    }
+    .footer-grid{
+      display:grid; gap:14px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:flex-start;
+    }
+    .fine{ font-size:12px; color:rgba(201,191,182,.85); }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .bullets{ grid-template-columns: 1fr; }
+      nav{ display:none; } /* keep it clean on mobile */
+    }
+  </style>
+
+  <!-- JSON-LD (helps Google understand your business). Replace placeholders. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Korobko",
+    "areaServed": ["Montreal, QC", "Cornwall, ON", "Ottawa, ON"],
+    "description": "Professional geodetic specialist with high-precision equipment: topographic surveys, construction layout, utility data collection, and GIS mapping.",
+    "email": "ok91ca@gmail.com",
+    "telephone": "+1-438-836-6519",
+    "url": "https://korobkogeomatics.com"
+  }
+  </script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top">
+          <img src="logo.png" alt="Korobko" class="logo" />
+          <div>
+            Korobko
+            <small>Geomatics Services</small>
+          </div>
+        </a>
+
+        <nav aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#areas">Service Areas</a>
+          <a href="#deliverables">Deliverables</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="card hero-main">
+            <span class="tag">Montreal • Cornwall • Ottawa</span>
+            <h1>Accurate field data for confident construction & mapping decisions.</h1>
+            <p class="lead">
+              I'm a professional geomatics specialist with high-precision surveying equipment, providing accurate field data and GIS solutions for
+              residential, commercial, and construction projects. Direct communication, meticulous work, and AutoCAD-ready deliverables.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact">Get a Quote</a>
+              <a class="btn" href="#services">View Services</a>
+              <span class="tag">DWG/DXF • CSV • PDF</span>
+            </div>
+
+            <ul class="bullets" aria-label="Highlights">
+              <li><span class="dot" aria-hidden="true"></span><span>Topographic surveys (existing conditions, elevations, contours)</span></li>
+              <li><span class="dot" aria-hidden="true"></span><span>Construction layout / stakeout (points, lines, grades)</span></li>
+              <li><span class="dot" aria-hidden="true"></span><span>Utility data collection and structured field records</span></li>
+              <li><span class="dot" aria-hidden="true"></span><span>GIS mapping and coordinate data processing</span></li>
+            </ul>
+          </div>
+
+          <aside class="card hero-side" aria-label="Quick info" style="display:none;">
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Services</h2>
+            <p>Choose what you need — from quick field support to full topographic deliverables.</p>
+          </div>
+          <span class="tag">High-precision • Master's in Geodetic Engineering</span>
+        </div>
+
+        <div class="grid-3">
+          <article class="card service">
+            <h3>Topographic Surveying</h3>
+            <ul>
+              <li>Existing conditions mapping</li>
+              <li>Elevations & terrain model support</li>
+              <li>Contours and feature location</li>
+              <li>As-built / as-laid drawings (when applicable)</li>
+            </ul>
+          </article>
+
+          <article class="card service">
+            <h3>Construction Layout (Stakeout)</h3>
+            <ul>
+              <li>Set out points, lines, offsets</li>
+              <li>Grades and control points</li>
+              <li>Support for foundations, utilities, roads</li>
+              <li>Verification checks during stages</li>
+            </ul>
+          </article>
+
+          <article class="card service">
+            <h3>GIS & Mapping</h3>
+            <ul>
+              <li>GPS/GNSS data processing</li>
+              <li>Coordinate handling & transformations</li>
+              <li>Structured datasets for clients</li>
+              <li>Integration with CAD workflows</li>
+            </ul>
+          </article>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="grid-2">
+          <article class="card service">
+            <h3>Utility Data Collection</h3>
+            <ul>
+              <li>Field recording of utility-related assets</li>
+              <li>Photo-based identifier extraction (serials/IDs)</li>
+              <li>Organized lists & CAD-ready inserts</li>
+              <li>Clean structure for reporting and handoff</li>
+            </ul>
+          </article>
+
+          <article class="card service">
+            <h3>Drafting & File Cleanup</h3>
+            <ul>
+              <li>Layer organization and basic standards</li>
+              <li>Readable drawings for contractors/clients</li>
+              <li>Export packages (DWG/DXF + PDF + CSV)</li>
+              <li>Simple revisions and updates</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Coverage & Response</h2>
+            <p>Based in Eastern Ontario with fast turnaround for your region.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card split">
+            <h3>Primary Coverage</h3>
+            <p>
+              <strong>Montreal, QC</strong><br/>
+              <strong>Cornwall, ON</strong><br/>
+              <strong>Ottawa, ON</strong><br/><br/>
+              <span style="color:var(--muted);">Same-day or next-day responses for projects in these areas.</span>
+            </p>
+          </div>
+          <div class="card split">
+            <h3>Extended Service</h3>
+            <p>
+              Projects beyond primary coverage areas are available by arrangement. Pricing and scheduling adjusted based on travel and scope.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="deliverables">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Deliverables</h2>
+            <p>Clear handoff files so your team can continue work immediately.</p>
+          </div>
+          <span class="tag">AutoCAD-friendly</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="card split">
+            <h3>CAD Files</h3>
+            <p><strong>DWG / DXF</strong> with organized layers and clean geometry (as requested).</p>
+          </div>
+          <div class="card split">
+            <h3>Data Tables</h3>
+            <p><strong>CSV</strong> coordinate tables, point lists, IDs, and structured outputs.</p>
+          </div>
+          <div class="card split">
+            <h3>Client Reports</h3>
+            <p><strong>PDF</strong> deliverable packages: notes, sketches, and export sheets.</p>
+          </div>
+          <div class="card split">
+            <h3>Optional Formats</h3>
+            <p>Other exports are possible if you specify your software and requirements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>About Korobko</h2>
+            <p>Solo service with professional standards — easy communication and reliable results.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card split">
+            <h3>Background</h3>
+            <p>
+              Master's degree in Geodetic Engineering. I specialize in high-precision field surveying, topographic data collection, and GIS processing. My equipment and methodology ensure accuracy down to the centimeter, and every project receives professional attention to detail.
+            </p>
+          </div>
+          <div class="card split">
+            <h3>How I Work</h3>
+            <p>
+              1) Understand your goal → 2) Confirm scope and deliverables → 3) Field work →
+              4) Clean data → 5) Send export package.
+            </p>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="grid-2">
+          <div class="card split">
+            <h3>Get in touch</h3>
+            <p>
+              <strong>Name:</strong> Oleg<br/>
+              <strong>Email:</strong> <a href="mailto:ok91ca@gmail.com">ok91ca@gmail.com</a><br/>
+              <strong>Phone:</strong> <a href="tel:+1-438-836-6519">+1 (438) 836-6519</a><br/>
+              <strong>Business name:</strong> Korobko
+            </p>
+          </div>
+
+          <div class="card split">
+            <h3>What to include in your message</h3>
+            <p>
+              • Location (address or nearest intersection)<br/>
+              • Type of work (topo, stakeout, mapping, etc.)<br/>
+              • Deadline / preferred date<br/>
+              • Deliverable format (DWG/DXF, CSV, PDF)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:10px;">
+            <img src="logo.png" alt="Korobko" class="logo" />
+            <div>
+              Korobko
+              <small>Geomatics Services</small>
+            </div>
+          </div>
+          <div class="fine">
+            © <span id="year"></span> Korobko. All rights reserved.
+          </div>
+        </div>
+
+        <div class="fine">
+          <strong>Service Areas:</strong> Montreal (QC) • Cornwall (ON) • Ottawa (ON)<br/>
+          <strong>Formats:</strong> DWG/DXF • CSV • PDF
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
